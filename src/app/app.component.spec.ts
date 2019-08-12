@@ -2,6 +2,8 @@ import { TestBed, async } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
 import { ChildComponent } from './child/child.component';
+import { LocationService } from './shared/services/location.service';
+import { LocationServiceMock } from './shared/test-helpers/mocks/location.service.mock';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
@@ -13,6 +15,7 @@ describe('AppComponent', () => {
         AppComponent,
         ChildComponent
       ],
+      providers: [{ provide: LocationService, useClass: LocationServiceMock }]
     }).compileComponents();
   }));
 

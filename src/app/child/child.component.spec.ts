@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { ChildComponent } from './child.component';
+import { LocationService } from '../shared/services/location.service';
+import { LocationServiceMock } from '../shared/test-helpers/mocks/location.service.mock';
 
 describe('ChildComponent', () => {
   let component: ChildComponent;
@@ -8,7 +9,8 @@ describe('ChildComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ChildComponent]
+      declarations: [ChildComponent],
+      providers: [{ provide: LocationService, useClass: LocationServiceMock }]
     })
       .compileComponents();
   }));
@@ -26,7 +28,11 @@ describe('ChildComponent', () => {
     component.longitude = 73.73917436547346;
     fixture.detectChanges();
     const compiled = fixture.debugElement.nativeElement
+    // Test Input Params
     expect(compiled.querySelector('#latitude').textContent).toContain('Latitude : 18.578821075179366');
     expect(compiled.querySelector('#longitude').textContent).toContain('Longitude : 73.73917436547346');
+    // Test Service call logic
+    expect(compiled.querySelector('.city').textContent).toContain('City : Pune City');
+    expect(compiled.querySelector('.postalCode').textContent).toContain('PostalCode : 411051');
   });
 });

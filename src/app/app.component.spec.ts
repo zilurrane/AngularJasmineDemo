@@ -25,7 +25,7 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'AngularJasmineDemo'`, () => {
+  it(`should have as title 'Angular Jasmine Demo'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.debugElement.componentInstance;
     expect(app.title).toEqual('Angular Jasmine Demo');
